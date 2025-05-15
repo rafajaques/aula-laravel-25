@@ -1,10 +1,20 @@
 <h1>Lista de Compromisso</h1>
 <hr>
+
+@if ($errors->any())
+    <h3 style="color:red">Erro!</h3>
+    <ul>
+        @foreach ($errors->all() as $erro)
+            <li>{{$erro}}</li>
+        @endforeach
+    </ul>
+@endif
+
 <form action="{{ route('compromissos.salvar') }}" method="post">
     @csrf
-    <input type="text" name="titulo" placeholder="O que você tem pra fazer?">
+    <input type="text" name="titulo" placeholder="O que você tem pra fazer?" value="{{ old('titulo') }}">
     <br>
-    <input type="datetime-local" name="quando">
+    <input type="datetime-local" name="quando" value="{{ old('quando') }}">
     <br>
     <input type="submit" value="Gravar">
 </form>
